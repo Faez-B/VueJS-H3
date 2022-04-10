@@ -51,10 +51,10 @@ export default {
           if (data[0]) {
             const user = data[0];
 
-            // console.log(data);
+            // console.log(user);
 
             this.store.pseudo = user.pseudo ;
-            this.store.user_image = user.user_image ;
+            this.store.user_image = user.image ;
             this.store.connected = true ;
 
             // this.$emit("loggedIn", user.pseudo, user.user_image)
