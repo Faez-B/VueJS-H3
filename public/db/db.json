@@ -6,13 +6,7 @@
       "nom": "Doe",
       "email": "johndoe@test.com",
       "mdp": "test",
-      "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80",
-      "abonnements": [
-        2
-      ],
-      "amis": [
-        3
-      ]
+      "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80"
     },
     {
       "id": 2,
@@ -20,11 +14,7 @@
       "nom": "Dupont",
       "email": "leadupont@test.com",
       "mdp": "mdp123",
-      "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
-      "abonnements": [],
-      "amis": [
-        3
-      ]
+      "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
     },
     {
       "id": 3,
@@ -32,96 +22,63 @@
       "nom": "Dupont",
       "email": "alaindupont@test.com",
       "mdp": "password",
-      "image": "",
-      "abonnements": [],
-      "amis": [
-        1,
-        2
-      ]
+      "image": ""
     }
   ],
   "posts": [
     {
       "id": 1,
-      "user": 2,
-      "texte": "Nouvel photos de profil !",
+      "texte": "Nouvelle photo de profil !",
       "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
-      "likes": 0
+      "likes": 2,
+      "pseudo": "Lea",
+      "user_image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
+      "commentaires": [
+        {
+          "id": 1,
+          "pseudo": "Alain",
+          "comment": "Sublime !",
+          "dt": null
+        },
+        {
+          "id": 2,
+          "pseudo": "John",
+          "comment": "Sublime !",
+          "dt": null
+        }
+      ]
     },
     {
       "id": 2,
-      "user": 1,
       "texte": "J'apprends une nouvelle librairie JS !",
-      "image": "/favicon.ico",
-      "likes": 3
+      "image": "https://fr.vuejs.org/images/vue-component-with-preprocessors.png",
+      "likes": 3,
+      "pseudo": "John",
+      "user_image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80",
+      "commentaires": [
+        {
+          "id": 1,
+          "pseudo": "Lea",
+          "comment": "Bon courage !",
+          "dt": null
+        },
+        {
+          "id": 2,
+          "pseudo": "Alain",
+          "comment": "Super !",
+          "dt": null
+        }
+      ]
     },
     {
       "id": 3,
-      "user": 1,
+      "user": 3,
       "texte": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.",
-      "image": "/favicon.ico",
-      "likes": 0
-    },
-    {
-      "id": 4,
-      "user": 3,
-      "texte": "J'apprends une nouvelle librairie JS !",
-      "image": "/favicon.ico",
-      "likes": 0
-    },
-    {
-      "user": 1,
-      "texte": "test",
-      "image": "https://images.unsplash.com/photo-1649073344721-7b91565443c1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3164&q=80",
+      "image": "https://dyw7ncnq1en5l.cloudfront.net/optim/test/17/170773/2261d801-apple-macbook-pro-16-pouces-m1-pro-le-plein-de-coeurs-qui-fait-la-difference__1200_675__0-439-5824-3723_wtmk.jpeg",
       "likes": 0,
-      "id": 5
-    },
-    {
-      "user": 1,
-      "texte": "test",
-      "image": "/tardis.jpeg",
-      "likes": 0,
-      "id": 6
-    },
-    {
-      "user": 2,
-      "texte": "J'adore Doctor Who ! ",
-      "image": "/tardis.jpeg",
-      "likes": 0,
-      "id": 7
-    },
-    {
-      "user": 1,
-      "texte": "test",
-      "image": "https://images.unsplash.com/photo-1534353436294-0dbd4bdac845?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80",
-      "likes": 0,
-      "id": 8
-    }
-  ],
-  "commentaires": [
-    {
-      "id": 1,
-      "post": 1,
-      "user": 1,
-      "comment": "Sublime !"
-    },
-    {
-      "id": 2,
-      "post": 2,
-      "user": 3,
-      "comment": "Bon apprentissage"
-    },
-    {
-      "id": 3,
-      "post": 4,
-      "user": 1,
-      "comment": "Quelle coincidence, moi aussi !"
-    },
-    {
-      "id": 4,
-      "post": 1,
-      "user": 4,
-      "comment": "Superbe !"
+      "pseudo": "Alain",
+      "user_image": "",
+      "commentaires": []
     }
   ]
 }

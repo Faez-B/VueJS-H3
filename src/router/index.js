@@ -1,9 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import DemandesView from '../views/DemandesView.vue'
-import VideosView from '../views/VideosView.vue'
-import GamingView from '../views/GamingView.vue'
-import MarketView from '../views/MarketView.vue'
+// import DemandesView from '../views/DemandesView.vue'
+// import VideosView from '../views/VideosView.vue'
+// import GamingView from '../views/GamingView.vue'
+// import MarketView from '../views/MarketView.vue'
+import LoginView from '../views/LoginView.vue'
+import RegisterView from '../views/RegisterView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,25 +23,43 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue')
     },
+    // {
+    //   path: '/demandes',
+    //   name: 'demandes',
+    //   component: DemandesView
+    // },
+    // {
+    //   path: '/videos',
+    //   name: 'videos',
+    //   component: VideosView
+    // },
+    // {
+    //   path: '/marketplace',
+    //   name: 'marketplace',
+    //   component: MarketView
+    // },
+    // {
+    //   path: '/gaming',
+    //   name: 'gaming',
+    //   component: GamingView
+    // },
+
     {
-      path: '/demandes',
-      name: 'demandes',
-      component: DemandesView
+      path: '/login',
+      name: 'login',
+      component: LoginView
     },
+
     {
-      path: '/videos',
-      name: 'videos',
-      component: VideosView
+      path: '/register',
+      name: 'register',
+      component: RegisterView
     },
+
     {
-      path: '/marketplace',
-      name: 'marketplace',
-      component: MarketView
-    },
-    {
-      path: '/gaming',
-      name: 'gaming',
-      component: GamingView
+      path: '/logout',
+      name: 'logout',
+      component: HomeView
     }
   ]
 })

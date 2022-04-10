@@ -3,7 +3,12 @@ import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from '@/components/HelloWorld.vue'
 import Navbar from '@/components/Navbar.vue'
 import BarreLaterale from '@/components/BarreLaterale.vue'
-import Contacts from '@/components/Contacts.vue'
+// import IconCommunity from '@/components/icons/IconCommunity.vue'
+// import IconDocumentation from '@/components/icons/IconDocumentation.vue'
+// import IconEcosystem from '@/components/icons/IconEcosystem.vue'
+// import IconSupport from '@/components/icons/IconSupport.vue'
+// import IconTooling from '@/components/icons/IconTooling.vue'
+
 </script>
 
 <template>
@@ -12,15 +17,12 @@ import Contacts from '@/components/Contacts.vue'
       <Navbar />
     </header>
 
-    <div class="grid grid-cols-12 gap-2">
-      <div class="col-span-2">
+    <div class="grid grid-cols-12 gap-2 py-3">
+      <div class="col-span-3">
         <BarreLaterale />
       </div>
-      <div class="col-span-7">
+      <div class="col-span-8">
         <RouterView />
-      </div>
-      <div class="col-span-3">
-        <Contacts />
       </div>
     </div>
   </div>
@@ -30,10 +32,10 @@ import Contacts from '@/components/Contacts.vue'
 export default {
   data(){
     return {
-      id : 1,
-      nom : "",
-      prenom : "",
-      image : ""
+      // id : 1,
+      // nom : "",
+      // prenom : "",
+      // image : ""
     }
 
   },
@@ -72,27 +74,18 @@ export default {
 
 .size-72 { font-size: 72px; }
 
-.lien .bi-house-door-fill,
-.lien .bi-person-plus-fill,
-.lien .bi-play-btn-fill,
-.lien .bi-grid-1x2-fill,
-.lien .bi-cart-fill{
+.lien .bi-house-door-fill
+{
   display: none;
 }
 
-.lien.router-link-active .bi-house-door,
-.lien.router-link-active .bi-person-plus,
-.lien.router-link-active .bi-play-btn,
-.lien.router-link-active .bi-grid-1x2,
-.lien.router-link-active .bi-cart{
+.lien.router-link-active .bi-house-door
+{
   display: none;
 }
 
-.router-link-active .bi-house-door-fill,
-.router-link-active .bi-person-plus-fill,
-.router-link-active .bi-play-btn-fill,
-.router-link-active .bi-grid-1x2-fill,
-.router-link-active .bi-cart-fill{
+.router-link-active .bi-house-door-fill
+{
   display: inline-block;
 }
 </style>
