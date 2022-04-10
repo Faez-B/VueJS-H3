@@ -47,16 +47,24 @@
           </article>
         </form>
         
-        <article v-for="(post, index) in posts" :key="index" class="my-2" >
+        <article v-for="(post, index) in posts.slice().reverse()" :key="index" class="my-2" >
           <div class="border border-gray-400">
-            <div class="flex items-center px-3 py-2 bg-gray-100">
-              <!-- {{ post.user_image }} -->
-              <div class="text-sm">
-                <p class="text-gray-900 font-medium size-21">{{ post.pseudo }}</p>
-                <!-- <p class="text-gray-600">Aug 18</p> -->
+            <div class="flex items-center px-3 py-2 bg-gray-100 justify-between">
+              <div class="flex">
+                <div class="text-sm flex items-center">
+                  <p class="text-gray-900 font-medium size-21">{{ post.pseudo }}</p>
+                </div>
+                <span class="align-middle">
+                  <img v-if="post.user_image" class="w-10 h-10 rounded-full mx-4 object-cover" :src="post.user_image" alt="">
+                  <i v-else class="bi bi-person-circle size-36 mx-4"></i>
+                </span>
               </div>
-              <img v-if="post.user_image" class="w-10 h-10 rounded-full mx-4 object-cover" :src="post.user_image" alt="">
-              <i v-else class="bi bi-person-circle size-36 mx-4"></i>
+
+              <span v-if="post.date">
+                <p class="text-gray-500 size-14">
+                  posté le {{ getDate(post.date) }}
+                </p>
+              </span>
             </div>
 
             <div class="">
@@ -64,20 +72,11 @@
               <p class="text-gray-700 text-base mx-2 my-3">{{ post.texte }}</p>
             </div>
 
-            <div class="border border-top bg-gray-100 px-2 py-1 flex gap-5">
-              <span v-if="post.commentaires">
-                <span v-if="post.commentaires.length > 1">
-                  <i class="bi bi-chat-left-dots align-middle"></i> 
-                  <span class="align-middle mx-2 px-2 bg-green-700 text-white inline-block rounded">
-                    {{ post.commentaires.length }}
-                  </span>
-                </span>
-              </span>
-
-              <span v-else>
+            <div class="border border-top bg-gray-100 px-4 py-1 flex gap-5">
+              <span>
                 <i class="bi bi-chat-left-dots align-middle"></i> 
                 <span class="align-middle mx-2 px-2 bg-green-700 text-white inline-block rounded">
-                  {{ post.commentaires.length }}
+                  {{ post.commentaires.length ? post.commentaires.length : 0 }}
                 </span>
               </span>
 
@@ -92,32 +91,37 @@
               </span>
             </div>
 
-            <h2 v-if="post.commentaires.length" class="p-2 size-21">
+            <h2 v-if="post.commentaires.length" class="p-4 size-21 font-medium">
               Commentaires :
             </h2>
 
-            <div v-for="(commentaire, indexCom) in post.commentaires" :key="indexCom" class="px-2 py-1 border border-top border-bottom">
-                <div class="flex justify-between">
-                  <span class="font-bold">
-                    {{ commentaire.pseudo }}
-                  </span>
+            <div class="max-h-36 overflow-auto">
+              <div v-for="(commentaire, indexCom) in post.commentaires" :key="indexCom" class="px-4 py-1 border border-top border-bottom">
+                  <div class="flex justify-between">
+                    <span class="font-bold">
+                      {{ commentaire.pseudo }}
+                    </span>
 
-                  <span class="text-gray-400 text-sm">
-                    {{ commentaire.dt }}
-                    le 27/03/2021 à 05h33
-                  </span>
-                </div>
+                    <span class="text-gray-400 text-sm">
+                      le {{ getDate(commentaire.dt) }}
+                    </span>
+                  </div>
 
-                <p>
-                  {{ commentaire.comment }}
-                </p>
+                  <p>
+                    {{ commentaire.comment }}
+                  </p>
+              </div>
             </div>
 
             <form @submit.prevent="submitComment(post)">
+              <h2 class="p-4 size-21 font-medium pb-0">
+                Ajouter un commentaire :
+              </h2>
+
               <div class="p-4">
                 <div class="flex items-center">
                   <div class="w-full">
-                    <textarea :placeholder="'Laissez un commentaire'" v-model="new_post_text" rows="3" class="bg-slate-200 px-3 py-1.5 w-full
+                    <textarea :placeholder="'Laissez un commentaire'" v-model="postComment" rows="3" class="bg-slate-200 px-3 py-1.5 w-full
                       border border-solid border-gray-300
                       focus:bg-white focus:border-blue-600 focus:outline-none
                       "></textarea>
@@ -142,17 +146,17 @@ export default {
   data(){
     return {
       connected : false,
-
-      // id : 1,
-      nom : "",
-      prenom : "",
-      // image : "",
-
       posts : [],
-      // users : [],
 
+      // publier un nouveau post // avec le texte et l'url de l'image
       new_post_text : "",
-      new_post_image : ""
+      new_post_image : "",
+
+      pseudo : "John",
+      user_image : "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80",
+
+      // Laisser un commentaire pour un post
+      postComment : "",
     }
   },
 
@@ -170,10 +174,13 @@ export default {
 
     onSubmit() {
       const post = { 
-        user : this.id,
         texte : this.new_post_text,
         image : this.new_post_image,
-        likes : 0
+        likes : 0,
+        pseudo : this.pseudo,
+        user_image : this.user_image,
+        commentaires : [],
+        date : Date.now()
       }
 
       fetch(
@@ -188,25 +195,38 @@ export default {
           // context.emit('add', data )
           this.new_post_text = "";
           this.new_post_image = "";
+          // this.posts = data;
       })
     },
 
     submitComment(post){
-      // const postCopy = {...post};
+      // suivre la même technique que pour liker un post
+      const new_commentaire = {
+        pseudo : this.pseudo,
+        comment : this.postComment,
+        dt : Date.now()
+      };
 
-      // fetch(
-      //   "http://localhost:3004/posts" , {
-      //       method: "post", 
-      //       headers : {"content-type": "application/json"} , 
-      //       body : JSON.stringify(postCopy)
-      //   }
-      // )
-      // .then(reponse => reponse.json())
-      // .then(data => {
-      //     // context.emit('add', data )
-      //     this.new_post_text = "";
-      //     this.new_post_image = "";
-      // })
+      const commentaires =  [...post.commentaires, new_commentaire ];
+
+      post = { ...post, commentaires }
+
+      // console.log(commentaires);
+      // console.log(post);
+
+      fetch(
+        "http://localhost:3004/posts/" + post.id , {
+            method: "PUT", 
+            headers : {"content-type": "application/json"} , 
+            body : JSON.stringify(post)
+        }
+      )
+      .then(reponse => reponse.json())
+      .then(data => {
+          // context.emit('add', data )
+          this.postComment = "";
+          // this.new_post_image = "";
+      })
     },
 
     likePost(post){
@@ -223,7 +243,21 @@ export default {
       .then(data => {
         
       })
-    }
+    },
+
+    getDate(dateParam){
+      const date = new Date(dateParam);
+      const jour = (date.getDate() < 10) ? "0" + date.getDate() : date.getDate();
+      const mois = (date.getMonth() < 10) ? "0" + date.getMonth() : date.getMonth();
+      const heures = (date.getHours() < 10) ? "0" + date.getHours() : date.getHours();
+      const minutes = (date.getMinutes() < 10) ? "0" + date.getMinutes() : date.getMinutes();
+
+      // console.log(mois);
+
+      // console.log(`${date.getDate()}/${mois}/${date.getFullYear()}`);
+
+      return `${jour}/${mois}/${date.getFullYear()} à ${heures}h${minutes}`
+    },
   },
 
   mounted () {
