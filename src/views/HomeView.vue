@@ -1,7 +1,14 @@
 <template>
   <main>
     <div>
-        <form @submit.prevent="onSubmit">
+        <!-- <p>{{ store.counter }}</p>
+        <button @click="augmenter">Augmenter</button>  -->
+        
+        <!-- 
+        <p>{{ store.pseudo }}</p>
+        <p>{{ store.user_image }}</p> -->
+
+        <form v-if="store.connected" @submit.prevent="onSubmit">
           <article class="my-2">
             <div class="border border-gray-400 p-4">
               <div class="flex items-center">
@@ -82,7 +89,7 @@
 
               <span>
                 <!-- Si l'utilisateur est connecté alors il peut liker les posts -->
-                <i v-if="connected" class="bi bi-hand-thumbs-up size-18 align-middle cursor-pointer" @click="likePost(post)"></i> 
+                <i v-if="store.connected" class="bi bi-hand-thumbs-up size-18 align-middle cursor-pointer" @click="likePost(post)"></i> 
                 <i v-else class="bi bi-hand-thumbs-up size-18 align-middle"></i> 
 
                 <span class="align-middle mx-2 px-2 bg-blue-600 text-white inline-block rounded">
@@ -113,7 +120,7 @@
               </div>
             </div>
 
-            <form @submit.prevent="submitComment(post)">
+            <form v-if="store.connected" @submit.prevent="submitComment(post)">
               <h2 class="p-4 size-21 font-medium pb-0">
                 Ajouter un commentaire :
               </h2>
@@ -142,18 +149,22 @@
 </template>
 
 <script>
+import { useCounterStore } from "../stores/counter.js";
+
 export default {
   data(){
     return {
-      connected : false,
+      store : useCounterStore(), 
+
+      connected : null,
       posts : [],
 
       // publier un nouveau post // avec le texte et l'url de l'image
       new_post_text : "",
       new_post_image : "",
 
-      pseudo : "John",
-      user_image : "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80",
+      pseudo : "",
+      user_image : "",
 
       // Laisser un commentaire pour un post
       postComment : "",
@@ -161,17 +172,6 @@ export default {
   },
 
   methods : {
-    onChange(e) {
-      if ( ! this.new_post_image ) { // Si on n'a pas entré d'url => on prend le fichier qui a été sélectionné
-        const array = e.target.value.split("\\");
-        const nom_fichier = array[array.length - 1];
-        // console.log(array[array.length - 1]);
-        this.new_post_image = `/${nom_fichier}`;
-
-        // console.log(this.new_post_image);
-      }
-    },
-
     onSubmit() {
       const post = { 
         texte : this.new_post_text,
@@ -200,7 +200,6 @@ export default {
     },
 
     submitComment(post){
-      // suivre la même technique que pour liker un post
       const new_commentaire = {
         pseudo : this.pseudo,
         comment : this.postComment,
@@ -261,25 +260,17 @@ export default {
   },
 
   mounted () {
-    // fetch("http://localhost:3004/users")
-    // .then(reponse => reponse.json())
-    // .then( data => {
-    //   // const user = data.filter(user => user.id === this.id)[0];
-    //   // this.nom = user.nom;
-    //   // this.prenom = user.prenom;
-    //   // this.image = user.image;
+    this.pseudo = this.store.pseudo ;
+    this.user_image = this.store.user_image ;
+    this.connected = this.store.connected;
 
-    //   this.users = data;
-    //   // console.log(this.users);
-
-    // });
+    // console.log(this.connected);
 
     fetch("http://localhost:3004/posts")
     .then( reponse => reponse.json() )
     .then( data => {
       // this.posts = ( data.filter( post => post.user === this.id ) )
       this.posts = data;
-      // this.posts = 
     });
 
   }

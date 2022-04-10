@@ -17,6 +17,13 @@ import BarreLaterale from '@/components/BarreLaterale.vue'
       <Navbar />
     </header>
 
+    <!-- 
+      <p>{{ store.counter }}</p>
+      <button @click="augmenter">Augmenter</button> 
+    -->
+    <!-- <p>{{ store }}</p> -->
+
+
     <div class="grid grid-cols-12 gap-2 py-3">
       <div class="col-span-3">
         <BarreLaterale />
@@ -29,6 +36,8 @@ import BarreLaterale from '@/components/BarreLaterale.vue'
 </template>
 
 <script>
+import { useCounterStore } from "./stores/counter.js";
+
 export default {
   data(){
     return {
@@ -36,18 +45,30 @@ export default {
       // nom : "",
       // prenom : "",
       // image : ""
-    }
 
+      store : useCounterStore()
+    }
   },
 
   methods: {
-    
-  },
-
-  mounted(){
-  
+    augmenter (){
+      this.store.increment()
+    }
   }
 
+  // Ne fonctionne pas ???
+  // setup(){
+  //   const store = useCounterStore();
+
+  //   function augmenter (){
+  //     store.increment()
+  //   }
+    
+  //   return {
+  //     store ,
+  //     augmenter
+  //   }
+  // }
 }
 </script>
 
