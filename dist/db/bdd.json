@@ -1,0 +1,131 @@
+{
+    "users": [
+      {
+        "id": 1,
+        "prenom": "John",
+        "nom": "Doe",
+        "email": "johndoe@test.com",
+        "mdp": "test",
+        "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80",
+        "abonnements": [
+          2
+        ],
+        "amis": [
+          3
+        ],
+        "posts" : [
+            {
+                "id": 2,
+                "texte": "J'apprends une nouvelle librairie JS !",
+                "image": "/favicon.ico",
+                "likes": 3,
+                "commentaires" : [
+                    {
+                        "id": 2,
+                        "user": 3,
+                        "comment": "Bon apprentissage"
+                    },
+
+                    {
+                        "id": 5,
+                        "user": 2,
+                        "comment": "Bon apprentissage !"
+                    }
+                ]
+            },
+
+            {
+                "id": 3,
+                "texte": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.",
+                "image": "/favicon.ico",
+                "likes": 0
+            },
+
+            {
+                "id": 5,
+                "texte": "test",
+                "image": "https://images.unsplash.com/photo-1649073344721-7b91565443c1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3164&q=80",
+                "likes": 0
+            },
+
+            {
+                "id": 6,
+                "texte": "test",
+                "image": "/tardis.jpeg",
+                "likes": 0
+            }
+        ]
+      },
+
+      {
+        "id": 2,
+        "prenom": "Lea",
+        "nom": "Dupont",
+        "email": "leadupont@test.com",
+        "mdp": "mdp123",
+        "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
+        "abonnements": [],
+        "amis": [
+          3
+        ],
+        "posts" : [
+            {
+                "id": 1,
+                "texte": "Nouvel photos de profil !",
+                "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
+                "likes": 0,
+                "commentaires" : [
+                    {
+                        "id": 1,
+                        "user": 1,
+                        "comment": "Sublime !"
+                    },
+
+                    {
+                        "id": 4,
+                        "user": 4,
+                        "comment": "Superbe !"
+                    }
+                ]
+            },
+
+            {
+                "id": 7,
+                "texte": "J'adore Doctor Who ! ",
+                "image": "/tardis.jpeg",
+                "likes": 0
+            }
+        ]
+      },
+
+      {
+        "id": 3,
+        "prenom": "Alain",
+        "nom": "Dupont",
+        "email": "alaindupont@test.com",
+        "mdp": "password",
+        "image": "",
+        "abonnements": [],
+        "amis": [
+          1,
+          2
+        ],
+        "posts" : [
+            {
+                "id": 4,
+                "user": 3,
+                "texte": "J'apprends une nouvelle librairie JS !",
+                "image": "/favicon.ico",
+                "likes": 0,
+                "commentaires" : [
+                    {
+                        "id": 3,
+                        "user": 1,
+                        "comment": "Quelle coincidence, moi aussi !"
+                    }
+                ]
+            }
+        ]
+      }
+    ]
+  }
