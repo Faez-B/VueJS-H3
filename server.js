@@ -8,7 +8,7 @@ app.listen(port);
 
 const jsonServer = require('json-server');
 const server = jsonServer.create();
-const router = jsonServer.router('public/db/db.json'); // <== Will be created later
+const router = jsonServer.router('db.json'); // <== Will be created later
 const middlewares = jsonServer.defaults();
 const dbPort = process.env.PORT || 3004; // <== You can change the port
 
