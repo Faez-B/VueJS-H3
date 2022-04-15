@@ -6,7 +6,7 @@
     "build": "vite build",
     "preview": "vite preview --port 5050",
     
-    "api": "json-server public/db//db.json --watch --port=3004",
+    "bdd": "json-server public/db//db.json --watch --port=3004",
 
     "postinstall": "npm run build",
     "start": "node server.js"

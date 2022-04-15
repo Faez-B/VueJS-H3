@@ -187,34 +187,27 @@ export default {
     },
 
     submitComment(post){
+      const new_commentaire = {
+        pseudo : this.pseudo,
+        comment : this.postComment,
+        dt : Date.now()
+      };
 
-      console.log(post);
+      post.commentaires.push(new_commentaire);
 
-      // const new_commentaire = {
-      //   pseudo : this.pseudo,
-      //   comment : this.postComment,
-      //   dt : Date.now()
-      // };
-
-      // const commentaires =  [...post.commentaires, new_commentaire ];
-
-      // post = { ...post, commentaires }
-
-      // const current_post = {...post};
-
-      // fetch(
-      //   "http://localhost:3004/posts/" + post.id , {
-      //       method: "PUT", 
-      //       headers : {"content-type": "application/json"} , 
-      //       body : JSON.stringify(post)
-      //   }
-      // )
-      // .then(reponse => reponse.json())
-      // .then(data => {
-      //     this.postComment = "";
-      //     // post.commentaires = (data);
-      //     console.log(current_post);
-      // })
+      fetch(
+        "http://localhost:3004/posts/" + post.id , {
+            method: "PUT", 
+            headers : {"content-type": "application/json"} , 
+            body : JSON.stringify(post)
+        }
+      )
+      .then(reponse => reponse.json())
+      .then(data => {
+          this.postComment = "";
+          // post.commentaires = (data);
+          // console.log(current_post);
+      })
     },
 
     likePost(post){

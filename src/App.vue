@@ -16,14 +16,7 @@ import BarreLaterale from '@/components/BarreLaterale.vue'
     <header class="shadow">
       <Navbar />
     </header>
-
-    <!-- 
-      <p>{{ store.counter }}</p>
-      <button @click="augmenter">Augmenter</button> 
-    -->
-    <!-- <p>{{ store }}</p> -->
-
-
+    
     <div class="grid grid-cols-12 gap-2 py-3">
       <div class="col-span-3">
         <BarreLaterale />
