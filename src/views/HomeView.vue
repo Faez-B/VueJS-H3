@@ -1,13 +1,6 @@
 <template>
   <main>
     <div>
-        <!-- <p>{{ store.counter }}</p>
-        <button @click="augmenter">Augmenter</button>  -->
-        
-        <!-- 
-        <p>{{ store.pseudo }}</p>
-        <p>{{ store.user_image }}</p> -->
-
         <form v-if="store.connected" @submit.prevent="onSubmit">
           <article class="my-2">
             <div class="border border-gray-400 p-4">
@@ -25,12 +18,6 @@
                     rounded-3xl
                     focus:bg-white focus:border-blue-600 focus:outline-none
                     "></textarea>
-                  <!-- <input type="text" v-model="new_post_text" :placeholder="'Quoi de neuf ' + prenom + ' ?'" class="bg-slate-200 px-3 py-1.5 w-full
-                    border border-solid border-gray-300
-                    rounded-3xl
-                    focus:bg-white focus:border-blue-600 focus:outline-none
-                    "
-                  /> -->
                 </div>
               </div>
 
@@ -54,7 +41,7 @@
           </article>
         </form>
         
-        <article v-for="(post, index) in posts.slice().reverse()" :key="index" class="my-2" >
+        <article v-for="post in posts.slice().reverse()" :key="post" class="my-2" >
           <div class="border border-gray-400">
             <div class="flex items-center px-3 py-2 bg-gray-100 justify-between">
               <div class="flex">
@@ -192,40 +179,42 @@ export default {
       )
       .then(reponse => reponse.json())
       .then(data => {
-          // context.emit('add', data )
           this.new_post_text = "";
           this.new_post_image = "";
-          // this.posts = data;
+
+          this.posts.push(data);
       })
     },
 
     submitComment(post){
-      const new_commentaire = {
-        pseudo : this.pseudo,
-        comment : this.postComment,
-        dt : Date.now()
-      };
 
-      const commentaires =  [...post.commentaires, new_commentaire ];
+      console.log(post);
 
-      post = { ...post, commentaires }
+      // const new_commentaire = {
+      //   pseudo : this.pseudo,
+      //   comment : this.postComment,
+      //   dt : Date.now()
+      // };
 
-      // console.log(commentaires);
-      // console.log(post);
+      // const commentaires =  [...post.commentaires, new_commentaire ];
 
-      fetch(
-        "http://localhost:3004/posts/" + post.id , {
-            method: "PUT", 
-            headers : {"content-type": "application/json"} , 
-            body : JSON.stringify(post)
-        }
-      )
-      .then(reponse => reponse.json())
-      .then(data => {
-          // context.emit('add', data )
-          this.postComment = "";
-          // this.new_post_image = "";
-      })
+      // post = { ...post, commentaires }
+
+      // const current_post = {...post};
+
+      // fetch(
+      //   "http://localhost:3004/posts/" + post.id , {
+      //       method: "PUT", 
+      //       headers : {"content-type": "application/json"} , 
+      //       body : JSON.stringify(post)
+      //   }
+      // )
+      // .then(reponse => reponse.json())
+      // .then(data => {
+      //     this.postComment = "";
+      //     // post.commentaires = (data);
+      //     console.log(current_post);
+      // })
     },
 
     likePost(post){
