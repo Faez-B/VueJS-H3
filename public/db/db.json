@@ -33,6 +33,13 @@
       "mdp": "test",
       "image": "https://scontent-cdt1-1.xx.fbcdn.net/v/t1.18169-9/18157063_1316699215103588_7345079881123943401_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=vZE3y150GFIAX9QkRgj&_nc_ht=scontent-cdt1-1.xx&oh=00_AT8yU98cDOakHwodtATI7IWa77DaCOmm5OskfimIr4KPlA&oe=62775FD5",
       "id": 4
+    },
+    {
+      "pseudo": "test",
+      "email": "test@test.fr",
+      "mdp": "test123",
+      "image": "",
+      "id": 5
     }
   ],
   "posts": [
@@ -87,7 +94,7 @@
       "user": 3,
       "texte": "Regardez mon nouveau Macbook !",
       "image": "https://dyw7ncnq1en5l.cloudfront.net/optim/test/17/170773/2261d801-apple-macbook-pro-16-pouces-m1-pro-le-plein-de-coeurs-qui-fait-la-difference__1200_675__0-439-5824-3723_wtmk.jpeg",
-      "likes": 0,
+      "likes": 1,
       "pseudo": "Alain",
       "user_image": "",
       "date": 1649606446074,
