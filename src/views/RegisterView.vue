@@ -9,6 +9,10 @@
         <i class="bi bi-person-circle size-28 align-middle"></i>
       </h2>
 
+      <p v-if="userCreated" class="text-green-600 italic">
+        Votre compte est créer, vous allez être rediriger vers la page de connexion
+      </p>
+
       <p v-if="pseudoShort" class="text-red-600 italic">
         * Le pseudo doit avoir au moins 3 caractères
       </p>
@@ -18,6 +22,10 @@
       </p>
 
       <input type="text" v-model="pseudo" placeholder="Pseudo*" required autofocus="" class="border block w-full my-5 p-2">
+
+      <p v-if="! isEmailValid " class="text-red-600 italic">
+        * L'email n'est pas valide
+      </p>
 
       <p v-if="emailExists" class="text-red-600 italic">
         * Cette email est déjà utilisée
@@ -49,10 +57,10 @@
 export default {
   data(){
     return {
-      pseudo : "User test",
-      email : "test@test.com",
-      mdp : "Usertest",
-      confirm_mdp : "Usertest",
+      pseudo : "",
+      email : "",
+      mdp : "",
+      confirm_mdp : "",
       image : "",
 
       error : false,
@@ -62,11 +70,22 @@ export default {
       
       pseudoExists : false,
       emailExists : false,
-      userExists : false
+      userExists : false,
+
+      userCreated : false,
+
+      isEmailValid : true,
+
     }
   },
 
   methods : {
+    // Verifier si le champ email est bien de la forme d'un email 
+    validEmail: function (email) {
+      var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    },
+
     onSubmit(){
 
       this.errorMdp = (this.mdp !== this.confirm_mdp);
@@ -74,7 +93,11 @@ export default {
       this.pseudoShort = (this.pseudo.length < 3);
       this.mdpShort = (this.mdp.length < 6);
 
-      this.error = (this.errorMdp) && (this.pseudoShort) && (this.mdpShort) && (this.pseudo !== "" && this.email !== "" && this.mdp !== "");
+      this.error =  (this.pseudo !== "" && this.email !== "" && this.mdp !== "") && // On vérifie que les champs ne sont pas vides...
+                    (this.pseudoShort) && // et que le pseudo n'est pas trop court...
+                    (this.mdpShort) && // et que le mdp n'est pas trop court...
+                    (this.errorMdp) && // et que les deux mdp correspondent...
+                    (this.validEmail(this.email)); // et que l'email est valide
 
       if (!this.error) { // Pas d'erreur
 
@@ -102,8 +125,9 @@ export default {
         // On utilise un time out car sinon les variables emailExists et pseudoExists restent à false
         setTimeout(() => {
           this.userExists = this.emailExists || this.pseudoExists;
+          this.isEmailValid = (this.validEmail(this.email));
 
-          if (!this.userExists) {
+          if (!this.userExists && this.isEmailValid) {
 
             const user = {
               pseudo : this.pseudo,
@@ -126,7 +150,15 @@ export default {
               this.mdp = "";
               this.confirm_mdp = "";
               this.image = "";
+
+              this.userCreated = true;
+            
+              setTimeout( () => {
+                this.$router.push('/login')
+              }, 3000)
             })
+
+
           }
           
         }, 100)

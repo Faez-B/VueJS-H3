@@ -13,6 +13,10 @@
         * Ce compte n'existe pas
       </p>
 
+      <p v-if="! isEmailValid " class="text-red-600 italic">
+        * L'email n'est pas valide
+      </p>
+
       <input type="email" v-model="email" required placeholder="Email*" class="border block w-full my-5 p-2">
       <input type="password" v-model="mdp" required placeholder="Mot de passe*" class="border block w-full my-5 p-2">
 
@@ -29,6 +33,8 @@ export default {
     return {
       store : useCounterStore(), 
 
+      isEmailValid : true,
+
       email : "",
       mdp : "",
 
@@ -37,8 +43,15 @@ export default {
   },
 
   methods : {
+    validEmail: function (email) {
+      var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    },
+
     onSubmit(){
-      this.error = (this.email === "" && this.mdp === "");
+      this.isEmailValid = (this.validEmail(this.email));
+
+      this.error = (this.email === "" && this.mdp === "") && (this.validEmail(this.email));
 
       if ( ! this.error) {
         
@@ -60,6 +73,10 @@ export default {
             // this.$emit("loggedIn", user.pseudo, user.user_image)
             
             this.$router.push('/')
+          }
+
+          else{
+            this.error = true;
           }
         });
       }
