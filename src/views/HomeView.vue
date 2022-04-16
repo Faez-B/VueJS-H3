@@ -90,7 +90,7 @@
             </h2>
 
             <div class="max-h-36 overflow-auto">
-              <div v-for="(commentaire, indexCom) in post.commentaires" :key="indexCom" class="px-4 py-1 border border-top border-bottom">
+              <div v-for="(commentaire, indexCom) in post.commentaires.slice().reverse()" :key="indexCom" class="px-4 py-1 border border-top border-bottom">
                   <div class="flex justify-between">
                     <span class="font-bold">
                       {{ commentaire.pseudo }}
