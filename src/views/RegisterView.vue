@@ -99,11 +99,14 @@ export default {
       this.pseudoShort = (this.pseudo.length < 3);
       this.mdpShort = (this.mdp.length < 6);
 
-      this.error =  (this.pseudo !== "" && this.email !== "" && this.mdp !== "") && // On vérifie que les champs ne sont pas vides...
-                    (this.pseudoShort) && // et que le pseudo n'est pas trop court...
-                    (this.mdpShort) && // et que le mdp n'est pas trop court...
-                    (this.errorMdp) && // et que les deux mdp correspondent...
-                    (this.validEmail(this.email)); // et que l'email est valide
+      this.isEmailValid = (this.validEmail(this.email));
+
+      // error => "true" si les champs ne sont pas remplis correctement 
+      this.error =  (this.pseudo === "" || this.email === "" || this.mdp === "") || // On vérifie que les champs ne sont pas vides...
+                    (this.pseudoShort) || // et que le pseudo n'est pas trop court...
+                    (this.mdpShort) || // et que le mdp n'est pas trop court...
+                    (this.errorMdp) || // et que les deux mdp correspondent...
+                    ( ! this.validEmail(this.email) ); // et que l'email est valide
 
       if (!this.error) { // Si pas d'erreur
 
@@ -131,8 +134,7 @@ export default {
         // On utilise un time out car sinon les variables emailExists et pseudoExists restent à false
         setTimeout(() => {
           this.userExists = this.emailExists || this.pseudoExists;
-          this.isEmailValid = (this.validEmail(this.email));
-
+          
           if (!this.userExists && this.isEmailValid) {
 
             const user = {
@@ -171,6 +173,7 @@ export default {
 
 
       }
+      
     }
   }
 }
