@@ -3,12 +3,6 @@ import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from '@/components/HelloWorld.vue'
 import Navbar from '@/components/Navbar.vue'
 import BarreLaterale from '@/components/BarreLaterale.vue'
-// import IconCommunity from '@/components/icons/IconCommunity.vue'
-// import IconDocumentation from '@/components/icons/IconDocumentation.vue'
-// import IconEcosystem from '@/components/icons/IconEcosystem.vue'
-// import IconSupport from '@/components/icons/IconSupport.vue'
-// import IconTooling from '@/components/icons/IconTooling.vue'
-
 </script>
 
 <template>
@@ -34,11 +28,6 @@ import { useCounterStore } from "./stores/counter.js";
 export default {
   data(){
     return {
-      // id : 1,
-      // nom : "",
-      // prenom : "",
-      // image : ""
-
       store : useCounterStore()
     }
   },
@@ -48,20 +37,6 @@ export default {
       this.store.increment()
     }
   }
-
-  // Ne fonctionne pas ???
-  // setup(){
-  //   const store = useCounterStore();
-
-  //   function augmenter (){
-  //     store.increment()
-  //   }
-    
-  //   return {
-  //     store ,
-  //     augmenter
-  //   }
-  // }
 }
 </script>
 

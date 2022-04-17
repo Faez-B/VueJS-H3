@@ -203,10 +203,8 @@ export default {
         }
       )
       .then(reponse => reponse.json())
-      .then(data => {
+      .then( () => {
           this.postComment = "";
-          // post.commentaires = (data);
-          // console.log(current_post);
       })
     },
 
@@ -221,9 +219,6 @@ export default {
         }
       )
       .then(reponse => reponse.json())
-      .then(data => {
-        
-      })
     },
 
     getDate(dateParam){
@@ -232,10 +227,6 @@ export default {
       const mois = (date.getMonth() < 10) ? "0" + date.getMonth() : date.getMonth();
       const heures = (date.getHours() < 10) ? "0" + date.getHours() : date.getHours();
       const minutes = (date.getMinutes() < 10) ? "0" + date.getMinutes() : date.getMinutes();
-
-      // console.log(mois);
-
-      // console.log(`${date.getDate()}/${mois}/${date.getFullYear()}`);
 
       return `${jour}/${mois}/${date.getFullYear()} à ${heures}h${minutes}`
     },
@@ -246,19 +237,12 @@ export default {
     this.user_image = this.store.user_image ;
     this.connected = this.store.connected;
 
-    // console.log(this.connected);
-
     fetch("http://localhost:3004/posts")
     .then( reponse => reponse.json() )
     .then( data => {
-      // this.posts = ( data.filter( post => post.user === this.id ) )
       this.posts = data;
     });
 
   }
 }
 </script>
-
-<style scoped>
-
-</style>
