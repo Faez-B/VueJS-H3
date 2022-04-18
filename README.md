@@ -22,6 +22,12 @@ npm install
 npm run dev
 ```
 
+### Lancer le serveur de base de données
+
+```sh
+npm run bdd
+```
+
 ### Compile and Minify for Production
 
 ```sh
