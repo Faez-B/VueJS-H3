@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <main class="px-3">
     <form class="border p-2 bg-gray-100" @submit.prevent="onSubmit">
       <h2 class="size-21">
         <span class="align-middle">
@@ -56,7 +56,7 @@
 
       <input type="submit" value="Créer un nouveau profil" class="bg-green-700 hover:bg-green-800 text-white size-14 py-2 px-4 rounded cursor-pointer">
     </form>
-  </div>
+  </main>
 </template>
 
 <script>

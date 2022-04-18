@@ -12,10 +12,10 @@ import BarreLaterale from '@/components/BarreLaterale.vue'
     </header>
     
     <div class="grid grid-cols-12 gap-2 py-3">
-      <div class="col-span-3">
+      <div class="col-span-12 md:col-span-3">
         <BarreLaterale />
       </div>
-      <div class="col-span-8">
+      <div class="col-span-12 md:col-span-8">
         <RouterView />
       </div>
     </div>

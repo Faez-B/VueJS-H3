@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="px-3">
     <div>
         <form v-if="store.connected" @submit.prevent="onSubmit">
           <article class="my-2">
