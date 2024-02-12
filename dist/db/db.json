@@ -26,20 +26,6 @@
       "email": "alaindupont@test.com",
       "mdp": "password",
       "image": ""
-    },
-    {
-      "pseudo": "User test",
-      "email": "test@test.com",
-      "mdp": "test",
-      "image": "https://scontent-cdt1-1.xx.fbcdn.net/v/t1.18169-9/18157063_1316699215103588_7345079881123943401_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=vZE3y150GFIAX9QkRgj&_nc_ht=scontent-cdt1-1.xx&oh=00_AT8yU98cDOakHwodtATI7IWa77DaCOmm5OskfimIr4KPlA&oe=62775FD5",
-      "id": 4
-    },
-    {
-      "pseudo": "test",
-      "email": "test@test.fr",
-      "mdp": "test123",
-      "image": "",
-      "id": 5
     }
   ],
   "posts": [
